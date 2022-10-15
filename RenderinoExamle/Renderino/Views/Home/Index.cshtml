@@ -15,7 +15,7 @@
 <script type="text/javascript">
     (async function main(){
       let divContent = document.getElementById('data-content');
-      let response = await fetch("api/values/getnames?count=10");
+      let response = await fetch("/api/values/getnames?count=10");
       if(response.ok){
             let json = await response.json();
             divContent.innerHTML = json.join('<br>');
