@@ -1,8 +1,15 @@
+using Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
+
+builder.Services
+	.AddScoped<IUsersService, UsersService>()
+	.AddScoped<IUsersReository, UsersRepository>()
+	.AddScoped<IProfileRepository, ProfileRepository>();
 
 var app = builder.Build();
 

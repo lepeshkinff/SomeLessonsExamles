@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repositories;
 using System.Reflection;
 
 namespace Renderino.Api
@@ -8,6 +9,20 @@ namespace Renderino.Api
     [ApiController]
     public class ValuesController : ControllerBase
     {
+      private readonly IUsersService usersReository;
+
+      public ValuesController(IUsersService usersReository)
+      {
+         this.usersReository = usersReository;
+      }
+
+      [HttpGet]
+      public IList<UserInfo> GetUsers()
+      {
+         return usersReository.GetUsers("");
+		}
+
+
       [HttpGet("[action]")]
       public async Task<IEnumerable<string>> GetNames(int count = 100)
       {
