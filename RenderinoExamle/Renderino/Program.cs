@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Renderino.Middleware;
 using Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<LoggingMidlleware>();
+
 
 builder.Services
 	.AddScoped<IUsersService, UsersService>()
@@ -26,6 +30,7 @@ app.UseSwaggerUI(options =>
 });
 app.UseStaticFiles();
 
+app.UseMiddleware<LoggingMidlleware>();
 app.UseRouting();
 
 app.UseAuthorization();

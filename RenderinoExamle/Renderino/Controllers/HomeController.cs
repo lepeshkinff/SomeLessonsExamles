@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Renderino.Models;
 using Repositories;
 using System.Diagnostics;
@@ -20,13 +21,12 @@ namespace Renderino.Controllers
 
 		public IActionResult Index()
 		{
-			var users = usersReository.GetUsers("");
+			//var users = usersReository.GetUsers("");
 			return View();
 		}
 
 		public IActionResult Privacy()
-		{
-
+		{			
 			return View();
 		}
 
