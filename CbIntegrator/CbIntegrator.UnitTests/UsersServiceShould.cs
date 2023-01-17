@@ -2,11 +2,20 @@ using CbIntegrator.Bussynes.Exceptions;
 using CbIntegrator.Bussynes.Models;
 using CbIntegrator.Bussynes.Repositories;
 using CbIntegrator.Bussynes.Services;
+using CbService;
 
 namespace CbIntegrator.UnitTests
 {
 	public class UsersServiceShould
 	{
+		[Fact]
+		public void Test()
+		{
+			var client = new DailyInfoSoapClient(DailyInfoSoapClient.EndpointConfiguration.DailyInfoSoap12);
+
+			var result = client.GetCursDynamic(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1), "810");
+		}
+
 		[Theory]
 		[InlineData(null, "1")]
 		[InlineData("1", null)]
@@ -46,6 +55,4 @@ namespace CbIntegrator.UnitTests
 			}
 		}
 	}
-
-
 }

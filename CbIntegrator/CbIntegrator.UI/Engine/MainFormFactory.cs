@@ -9,7 +9,7 @@
 		{
 			_form = new Lazy<MainForm>(() =>
 			{
-				var form = new MainForm();
+				var form = new MainForm(new Bussynes.Repositories.DummyCurenciesRepository());
 				context.MainForm = form;
 				return form;
 			});	

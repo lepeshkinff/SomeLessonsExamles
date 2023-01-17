@@ -12,6 +12,6 @@ namespace CbIntegrator.Bussynes.Repositories
 		/// <exception cref="UserNotFoundException">Если пользователь не авторизован ил не найден</exception>
 		/// <returns></returns>
 		User GetUser(string login, string password);
-		  User Register(string login, string password);
+		User Register(string login, string password);
 	}
 }

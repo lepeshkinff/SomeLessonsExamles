@@ -1,0 +1,23 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "../../../DailyInfo.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.Generic.List`1"
+    ],
+    "namespaceMappings": [
+      "*, CbService"
+    ],
+    "references": [
+      "Microsoft.Extensions.Configuration.Abstractions, {Microsoft.Extensions.Configuration.Abstractions, 7.0.0}",
+      "Microsoft.Extensions.Primitives, {Microsoft.Extensions.Primitives, 7.0.0}",
+      "System.Data.SqlClient, {System.Data.SqlClient, 4.8.5}",
+      "System.Runtime.CompilerServices.Unsafe, {System.Runtime.CompilerServices.Unsafe, 6.0.0}"
+    ],
+    "sync": true,
+    "targetFramework": "net6.0",
+    "typeReuseMode": "All"
+  }
+}

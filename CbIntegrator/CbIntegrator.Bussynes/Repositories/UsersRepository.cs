@@ -19,6 +19,18 @@ namespace CbIntegrator.Bussynes.Repositories
 			return user;
 		}
 
+		public List<User> GetUsers()
+		{
+			return GetList<User>(
+				"select login, password from users",
+				null,
+				reader => new User
+				{
+					Login = reader.GetString(0),
+					Password = reader.GetString(1)
+				});
+		}
+
 		public User Register(string login, string password)
 		{
 			var user = Execute(c => RegisterInternal(c, login, password));
@@ -28,8 +40,8 @@ namespace CbIntegrator.Bussynes.Repositories
 		private User RegisterInternal(DbConnection sqlConnection, string login, string password)
 		{
 			using var cmd = new SqlCommand(@$"
-					insert into users(id, login, password)
-					value(@id, @login, @password)",
+					insert into users(id, name, login, password)
+					value(@id, '', @login, @password)",
 					  (SqlConnection)sqlConnection);
 
 			cmd.Parameters.AddWithValue("id", Guid.NewGuid());
@@ -70,4 +82,5 @@ namespace CbIntegrator.Bussynes.Repositories
 			};
 		}
 	}
+
 }

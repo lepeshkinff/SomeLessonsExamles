@@ -32,7 +32,7 @@ namespace CbIntegrator.Bussynes.Services
 			}
 		}
 
-		public User? Register(string username, string password)
+		public (User? user, ErrorInfo? error) Register(string username, string password)
 		{
 			try
 			{
@@ -40,11 +40,11 @@ namespace CbIntegrator.Bussynes.Services
 				{
 					throw new ServiceException("");
 				}
-				return repository.Register(username, password);
+				return (repository.Register(username, password), null);
 			}
 			catch (UserNotFoundException)
 			{
-				return null;
+				return (null, new ErrorInfo());
 			}
 		}
 	}

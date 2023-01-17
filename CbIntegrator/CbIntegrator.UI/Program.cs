@@ -26,9 +26,9 @@ namespace CbIntegrator.UI
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			
-			var login = new LoginForm(factory, new UsersService(new UsersRepository(dbOptions)));
+			var login = new LoginForm(factory, new UsersService(new DummyIUsersRepository()));
 			context.MainForm = login;
-			Application.Run(context);			
+			Application.Run(context);
 		}
 
 		private static IConfiguration ReadConfiguration()

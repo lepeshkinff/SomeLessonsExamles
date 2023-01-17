@@ -1,4 +1,7 @@
-﻿using CbIntegrator.Bussynes.Options;
+﻿using CbIntegrator.Bussynes.Exceptions;
+using CbIntegrator.Bussynes.Models;
+using CbIntegrator.Bussynes.Options;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 
@@ -30,5 +33,33 @@ namespace CbIntegrator.Bussynes.Repositories
                 connection.Dispose();
             }
         }
+
+      protected List<T> GetList<T>(
+         string query, 
+         SqlParameter[]? parameters, 
+         Func<IDataReader, T> read)
+      {
+			using var connection = GetDbConnection();
+			using var cmd = new SqlCommand(query, (SqlConnection)connection);
+
+         if(parameters is { Length: >0 }) 
+         { 
+            foreach(var param in parameters)
+            {
+					cmd.Parameters.Add(param);
+				}
+         }
+			
+			using var reader = cmd.ExecuteReader();
+
+         var result = new List<T>();
+         while(reader.Read())
+         {
+				result.Add(read(reader));
+
+			}
+
+         return result;
+		}
     }
 }
