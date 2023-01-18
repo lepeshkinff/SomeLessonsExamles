@@ -3,16 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CbIntegrator.DbContexts
 {
-	[Table("Users")]
-	public record UsersTable
+	[Table("Currencies")]
+	public class Currency
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
-		[Column("Name")]
 		public string Name { get; set; }
-		public string Password { get; set; }
-
-		public string Login { get; set; }
 	}
 }

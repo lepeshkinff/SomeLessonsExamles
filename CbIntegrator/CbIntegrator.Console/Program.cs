@@ -1,15 +1,29 @@
 ﻿using CbIntegrator.Console;
+using CbIntegrator.DbContexts;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using System.Data.SqlClient;
 
 internal partial class Program
 {
-	private static void Main(string[] args)
+	private static async Task Main(string[] args)
 	{
-		var service = new AuthorizationService();
-		Console.WriteLine("Start");
-		service.Authorize("", "");
-		Console.WriteLine("Stop");
+		using var dbContext = new CbIntegratorDbContextFactory()
+				.CreateDbContext(null);
+
+		var users = await dbContext.Users.ToListAsync();
+
+		users = dbContext.Users.ToList();
+
+		var user = dbContext
+			.Users
+			.Where(x => x.Id == 1)
+			.FirstOrDefault();
+
+		var others = dbContext
+			.Users
+			.Where(x => x.Name.StartsWith("1"))
+			.ToList();
 	}
 
 	private static void PetsExample()

@@ -11,14 +11,32 @@ namespace CbIntegrator.UnitTests
 			using var dbContext = new CbIntegratorDbContextFactory()
 				.CreateDbContext(null);
 
-			var users = await dbContext.Users.ToListAsync();
+			var usersTask = dbContext.Users.ToListAsync();
+
+			var users = await usersTask;
+
+			var user = new UsersTable { Login = Guid.NewGuid().ToString(), Name = Guid.NewGuid().ToString(), Password = "123" };
+			dbContext.Users.Add(user);
+
+			await dbContext.SaveChangesAsync();
+
+			Assert.True(user.Id != 0);
+
+			user.Name = "SomeNewName";
+
+			await dbContext.SaveChangesAsync();
+
+			dbContext.Users.Remove(user);
+
+			await dbContext.SaveChangesAsync();
 
 			users = dbContext.Users.ToList();
 
-			var user = dbContext
+			user = await dbContext
 				.Users
-				.Where(x => x.Id == 1)
-				.FirstOrDefault();
+				.FirstOrDefaultAsync(x => x.Id == user.Id);
+
+			Assert.NotNull(user);
 
 			var others = dbContext
 				.Users

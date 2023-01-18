@@ -38,7 +38,7 @@ namespace CbIntegrator.UI.Froms
 
 		private void registrationBtn_Click(object sender, EventArgs e)
 		{
-			var (user, error) = usersService.Register(loginTb.Text, passwordTb.Text);
+			var (user, error) = usersService.Register(loginRegTb.Text, passwordRegTb.Text);
 
 			OpenMainWindow(user);
 			if (!OpenMainWindow(user))

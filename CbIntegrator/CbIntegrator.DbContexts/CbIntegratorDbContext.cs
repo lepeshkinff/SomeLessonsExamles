@@ -6,6 +6,8 @@ namespace CbIntegrator.DbContexts
 	{
 		public DbSet<UsersTable> Users { get; set; }
 
+		public DbSet<Currency> Currencies { get; set; }
+
 		public CbIntegratorDbContext(DbContextOptions<CbIntegratorDbContext> connection) : base(connection) { }
 		
 	}
