@@ -1,15 +1,6 @@
 ﻿using CbIntegrator.Bussynes.Models;
 using CbIntegrator.Bussynes.Services;
 using CbIntegrator.UI.Engine;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CbIntegrator.UI.Froms
 {
@@ -33,7 +24,6 @@ namespace CbIntegrator.UI.Froms
 			{
 				MessageBox.Show("Не нашли пользователя");
 			}
-			
 		}
 
 		private void registrationBtn_Click(object sender, EventArgs e)

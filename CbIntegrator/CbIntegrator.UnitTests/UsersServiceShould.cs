@@ -22,7 +22,7 @@ namespace CbIntegrator.UnitTests
 		[InlineData("1", "2")]
 		public void AuthorizeUserSuccess(string login, string password)
 		{
-			var service = new UsersService(new UsersRepo());
+			var service = new UsersService(null, new UsersRepo());
 
 			Assert.Throws<ServiceException>(() => service.Authorize(login, password));
 		}

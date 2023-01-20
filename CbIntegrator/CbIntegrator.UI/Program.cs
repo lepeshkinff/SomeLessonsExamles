@@ -10,7 +10,7 @@ namespace CbIntegrator.UI
 	internal static class Program
 	{
 		static MainFormFactory factory;
-		static ApplicationContext context;
+		static ApplicationContextCb context;
 
 		/// <summary>
 		///  The main entry point for the application.
@@ -18,15 +18,18 @@ namespace CbIntegrator.UI
 		[STAThread]
 		static void Main()
 		{
-			context = new ApplicationContext();
-			factory = new MainFormFactory(context);
+
+			factory = new MainFormFactory();
+			context = new ApplicationContextCb(factory);
+			factory.Context = context;
+
 			var config = ReadConfiguration();
 			var dbOptions = new DbOptions { ConnectionString = config.GetConnectionString("db")! };
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
-			
-			var login = new LoginForm(factory, new UsersService(new DbContextUserRepository()));
+
+			var login = new LoginForm(factory, new UsersService(context, new DummyIUsersRepository()));
 			context.MainForm = login;
 			Application.Run(context);
 		}

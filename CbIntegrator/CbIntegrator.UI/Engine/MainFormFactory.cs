@@ -5,12 +5,14 @@
 		
 		private Lazy<MainForm> _form;
 
-		public MainFormFactory(ApplicationContext context)
+		public ApplicationContext Context { get; set; }
+
+		public MainFormFactory()
 		{
 			_form = new Lazy<MainForm>(() =>
 			{
 				var form = new MainForm(new Bussynes.Repositories.DummyCurenciesRepository());
-				context.MainForm = form;
+				Context.MainForm = form;
 				return form;
 			});	
 		}

@@ -6,10 +6,12 @@ namespace CbIntegrator.Bussynes.Services
 {
 	public class UsersService : IUsersService
 	{
+		private readonly IApplicationContext applicationContext;
 		private readonly IUsersRepository repository;
 
-		public UsersService(IUsersRepository repository)
+		public UsersService(IApplicationContext applicationContext, IUsersRepository repository)
 		{
+			this.applicationContext = applicationContext;
 			this.repository = repository;
 		}
 
@@ -24,7 +26,9 @@ namespace CbIntegrator.Bussynes.Services
 		{
 			try
 			{
-				return repository.GetUser(username, password);
+				var user = repository.GetUser(username, password);
+				applicationContext.StartSession();
+				return user;
 			}
 			catch (UserNotFoundException)
 			{
@@ -40,6 +44,8 @@ namespace CbIntegrator.Bussynes.Services
 				{
 					throw new ServiceException("");
 				}
+
+				applicationContext.StartSession();
 				return (repository.Register(username, password), null);
 			}
 			catch (UserNotFoundException)
