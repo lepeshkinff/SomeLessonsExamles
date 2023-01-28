@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CbIntegrator.UI.Engine
 {
-	internal class SessionBreaker
+	public class SessionBreaker
 	{
 		static TimeSpan SessionTimeout = TimeSpan.FromSeconds(30);
 		static TimeSpan SessionMessageTimeout = TimeSpan.FromSeconds(15);
@@ -17,14 +17,11 @@ namespace CbIntegrator.UI.Engine
 		private System.Threading.Timer timerMessage;
 		private System.Threading.Timer timerSession;
 
-		private readonly ApplicationContextCb applicationContext;
-		private readonly IMainFormFactory factory;
+		private readonly Func<LoginForm> factory;
 
 		public SessionBreaker(
-			ApplicationContextCb applicationContext,
-			IMainFormFactory factory)
+			Func<LoginForm> factory)
 		{
-			this.applicationContext = applicationContext;
 			this.factory = factory;
 		}
 
@@ -45,12 +42,12 @@ namespace CbIntegrator.UI.Engine
 
 		private void ResetSession()
 		{
-			if(applicationContext.MainForm is { } mainForm)
+			if(Program.context.MainForm is { } mainForm)
 			{
 				mainForm.Invoke(() => 
 				{
-					var login = new LoginForm(factory, new UsersService(applicationContext, new DummyIUsersRepository()));
-					applicationContext.MainForm = login;
+					var login = factory();
+					Program.context.MainForm = login;
 					mainForm.Close();
 					login.Show();
 				});

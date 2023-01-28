@@ -49,6 +49,16 @@ namespace CbIntegrator.UnitTests
 				throw new Exception();
 			}
 
+			public ICollection<User> GetUsers(int page, int pageSize)
+			{
+				throw new NotImplementedException();
+			}
+
+			public int GetUsersCount()
+			{
+				throw new NotImplementedException();
+			}
+
 			public User Register(string login, string password)
 			{
 				throw new NotImplementedException();

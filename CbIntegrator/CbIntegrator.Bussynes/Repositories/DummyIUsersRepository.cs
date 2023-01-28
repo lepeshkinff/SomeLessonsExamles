@@ -9,6 +9,16 @@ namespace CbIntegrator.Bussynes.Repositories
 			return new User();
 		}
 
+		public ICollection<User> GetUsers(int page, int pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetUsersCount()
+		{
+			return 10;
+		}
+
 		public User Register(string login, string password)
 		{
 			return new User();

@@ -13,5 +13,19 @@ namespace CbIntegrator.Bussynes.Repositories
 		/// <returns></returns>
 		User GetUser(string login, string password);
 		User Register(string login, string password);
+
+		/// <summary>
+		/// Получить страницу пользователей
+		/// </summary>
+		/// <param name="page"></param>
+		/// <param name="pageSize"></param>
+		/// <returns></returns>
+		ICollection<User> GetUsers(int page, int pageSize);
+
+		/// <summary>
+		/// Получить количество пользователей
+		/// </summary>
+		/// <returns></returns>
+		int GetUsersCount();
 	}
 }

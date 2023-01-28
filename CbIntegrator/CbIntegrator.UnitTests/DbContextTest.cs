@@ -1,8 +1,10 @@
 ﻿using CbIntegrator.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using CbIntegrator.UI;
 
 namespace CbIntegrator.UnitTests
 {
+
 	public class DbContextTest
 	{
 		[Fact]

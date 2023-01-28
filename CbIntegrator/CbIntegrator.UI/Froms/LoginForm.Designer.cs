@@ -30,6 +30,7 @@
 		{
 			this.authTypeTabs = new System.Windows.Forms.TabControl();
 			this.loginTabPage = new System.Windows.Forms.TabPage();
+			this.capchaPb = new System.Windows.Forms.PictureBox();
 			this.LoginBtn = new System.Windows.Forms.Button();
 			this.passwordTb = new System.Windows.Forms.TextBox();
 			this.loginTb = new System.Windows.Forms.TextBox();
@@ -37,8 +38,10 @@
 			this.registrationBtn = new System.Windows.Forms.Button();
 			this.passwordRegTb = new System.Windows.Forms.TextBox();
 			this.loginRegTb = new System.Windows.Forms.TextBox();
+			this.capchaValueTb = new System.Windows.Forms.TextBox();
 			this.authTypeTabs.SuspendLayout();
 			this.loginTabPage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.capchaPb)).BeginInit();
 			this.registerTab.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,6 +57,8 @@
 			// 
 			// loginTabPage
 			// 
+			this.loginTabPage.Controls.Add(this.capchaValueTb);
+			this.loginTabPage.Controls.Add(this.capchaPb);
 			this.loginTabPage.Controls.Add(this.LoginBtn);
 			this.loginTabPage.Controls.Add(this.passwordTb);
 			this.loginTabPage.Controls.Add(this.loginTb);
@@ -65,9 +70,17 @@
 			this.loginTabPage.Text = "Вход";
 			this.loginTabPage.UseVisualStyleBackColor = true;
 			// 
+			// capchaPb
+			// 
+			this.capchaPb.Location = new System.Drawing.Point(32, 149);
+			this.capchaPb.Name = "capchaPb";
+			this.capchaPb.Size = new System.Drawing.Size(179, 108);
+			this.capchaPb.TabIndex = 5;
+			this.capchaPb.TabStop = false;
+			// 
 			// LoginBtn
 			// 
-			this.LoginBtn.Location = new System.Drawing.Point(6, 93);
+			this.LoginBtn.Location = new System.Drawing.Point(6, 97);
 			this.LoginBtn.Name = "LoginBtn";
 			this.LoginBtn.Size = new System.Drawing.Size(75, 23);
 			this.LoginBtn.TabIndex = 4;
@@ -127,6 +140,13 @@
 			this.loginRegTb.Size = new System.Drawing.Size(100, 23);
 			this.loginRegTb.TabIndex = 0;
 			// 
+			// capchaValueTb
+			// 
+			this.capchaValueTb.Location = new System.Drawing.Point(6, 68);
+			this.capchaValueTb.Name = "capchaValueTb";
+			this.capchaValueTb.Size = new System.Drawing.Size(203, 23);
+			this.capchaValueTb.TabIndex = 6;
+			// 
 			// LoginForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -139,6 +159,7 @@
 			this.authTypeTabs.ResumeLayout(false);
 			this.loginTabPage.ResumeLayout(false);
 			this.loginTabPage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.capchaPb)).EndInit();
 			this.registerTab.ResumeLayout(false);
 			this.registerTab.PerformLayout();
 			this.ResumeLayout(false);
@@ -156,5 +177,7 @@
 		private Button registrationBtn;
 		private TextBox passwordRegTb;
 		private TextBox loginRegTb;
+		private PictureBox capchaPb;
+		private TextBox capchaValueTb;
 	}
 }

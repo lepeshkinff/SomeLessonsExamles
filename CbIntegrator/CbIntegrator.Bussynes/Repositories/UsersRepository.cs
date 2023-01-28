@@ -81,6 +81,16 @@ namespace CbIntegrator.Bussynes.Repositories
 				Password = reader.GetString(1)
 			};
 		}
+
+		public ICollection<User> GetUsers(int page, int pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetUsersCount()
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 }
